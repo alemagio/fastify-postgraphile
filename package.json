@@ -1,0 +1,43 @@
+{
+  "name": "fastify-postgraphile",
+  "version": "0.0.0",
+  "description": "",
+  "main": "lib/index.js",
+  "types": "lib/",
+  "engines": {
+    "node": ">= 12"
+  },
+  "scripts": {
+    "prebuild": "npm run clean-build && npm run lint",
+    "build": "tsc -p ./tsconfig.json",
+    "clean-build": "rimraf ./lib && mkdir lib",
+    "lint": "ts-standard",
+    "unit": "tap --100 test/*.test.ts"
+  },
+  "keywords": [],
+  "author": "Alessandro Magionami - @alemagio",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alemagio/fastify-postgraphile.git"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^14.11.8",
+    "fastify": "^3.6.0",
+    "fastify-tsconfig": "^1.0.0",
+    "rimraf": "^3.0.2",
+    "ts-standard": "^9.0.0",
+    "typescript": "^4.0.3"
+  },
+  "files": [
+    "lib/",
+    "src",
+    "typings/"
+  ],
+  "dependencies": {
+    "fastify-plugin": "^3.0.0",
+    "graphql": "^15.3.0",
+    "pg": "^8.4.1",
+    "postgraphile": "^4.9.0"
+  }
+}
