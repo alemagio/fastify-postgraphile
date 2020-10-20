@@ -18,8 +18,8 @@ module.exports = fp(async function (fastify, opts: Options) {
       {
         pgPool: pool,
         jwtToken,
-        jwtSecret: opts.contextOptions.jwtSecret,
-        pgDefaultRole: opts.contextOptions.pgDefaultRole
+        jwtSecret: opts?.contextOptions?.jwtSecret,
+        pgDefaultRole: opts?.contextOptions?.pgDefaultRole
       },
       async context => {
         return await graphql(
