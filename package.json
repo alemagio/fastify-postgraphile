@@ -1,6 +1,6 @@
 {
   "name": "fastify-postgraphile",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "",
   "main": "lib/index.js",
   "types": "lib/",
@@ -42,6 +42,8 @@
     "lib/"
   ],
   "ts-standard": {
-    "ignore": ["test"]
+    "ignore": [
+      "test"
+    ]
   }
 }
