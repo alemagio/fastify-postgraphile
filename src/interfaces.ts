@@ -1,4 +1,5 @@
 import { PoolConfig } from 'pg'
+import { WithPostGraphileContextOptions } from 'postgraphile'
 
 export interface PoolOptions {
   user: string
@@ -8,14 +9,8 @@ export interface PoolOptions {
   port: string
 }
 
-export interface ContextOptions {
-  jwtToken?: string
-  jwtSecret?: string
-  pgDefaultRole?: string
-}
-
 export interface Options {
   poolConfig: PoolConfig
   schemas: string[]|string
-  contextOptions: ContextOptions
+  contextOptions: WithPostGraphileContextOptions
 }
