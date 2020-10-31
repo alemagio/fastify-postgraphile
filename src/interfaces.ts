@@ -10,7 +10,7 @@ export interface PoolOptions {
 }
 
 export interface Options {
-  poolConfig: PoolConfig
+  pool?: PoolConfig
   schemas: string[]|string
   contextOptions: WithPostGraphileContextOptions
 }
