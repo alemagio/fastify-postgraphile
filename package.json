@@ -13,7 +13,8 @@
     "clean-build": "rimraf ./lib && mkdir lib",
     "coverage": "tap --cov --coverage-report=html test",
     "lint": "ts-standard",
-    "unit": "tap test/*.test.ts"
+    "unit": "tap test/*.test.ts",
+    "test": "npm run lint && npm run unit"
   },
   "keywords": [],
   "author": "Alessandro Magionami - @alemagio",
