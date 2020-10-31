@@ -1,7 +1,7 @@
 {
   "name": "fastify-postgraphile",
   "version": "0.0.1",
-  "description": "",
+  "description": "Fastify plugin for PostGraphile",
   "main": "lib/index.js",
   "types": "lib/",
   "engines": {
@@ -16,7 +16,12 @@
     "unit": "tap test/*.test.ts",
     "test": "npm run lint && npm run unit"
   },
-  "keywords": [],
+  "keywords": [
+    "postgraphile",
+    "postgres",
+    "graphql",
+    "fastify"
+  ],
   "author": "Alessandro Magionami - @alemagio",
   "repository": {
     "type": "git",
