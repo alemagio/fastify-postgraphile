@@ -11,19 +11,8 @@ interface PostGraphileContext {
   [key: string]: PoolClient | mixed;
 }
 
-const gql = (
-  schema: GraphQLSchema,
-  query: string|Source,
-  rootValue?: any,
-  contextValue?: any,
-  variables?: any,
-  operationName?: Maybe<string>
-) => {
-  return Promise.resolve({} as ExecutionResult)
-}
-
 test('should create a performer', async t => {
-  t.plan(1)
+  t.plan(6)
 
   const schemaMock = {} as GraphQLSchema
   const queryMock = 'query'
@@ -31,11 +20,28 @@ test('should create a performer', async t => {
   const variablesMock = {}
   const operationNameMock = ''
 
+  const gql = (
+    schema: GraphQLSchema,
+    query: string|Source,
+    rootValue?: any,
+    contextValue?: any,
+    variables?: any,
+    operationName?: Maybe<string>
+  ) => {
+    t.deepEqual(schema, schemaMock)
+    t.deepEqual(query, queryMock)
+    t.deepEqual(rootValue, null)
+    t.deepEqual(variables, variablesMock)
+    t.deepEqual(operationName, operationNameMock)
+    return Promise.resolve({} as ExecutionResult)
+  }
+
   const postgraphileQueryHandler = (
     options: WithPostGraphileContextOptions,
     cb: (context: PostGraphileContext) => Promise<any>
   ): Promise<ExecutionResult> => {
     t.deepEqual(options, contextMock)
+    cb({} as PostGraphileContext)
     return Promise.resolve({} as ExecutionResult)
   }
 

@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+  database:
+    image: "postgres:11.1-alpine"
+    ports:
+        - 5445:5432
+    container_name: "test_fastify_postgraphile_database"
