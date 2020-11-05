@@ -19,3 +19,14 @@ module.exports = fp(async function (fastify, opts: Options) {
 
   fastify.decorateReply('graphql', queryPerformer.perform.bind(queryPerformer))
 }, { fastify: '3.x' })
+
+declare module 'fastify' {
+  export interface FastifyReply {
+    graphql: (
+      query: any,
+      variables: any,
+      operationName?: string,
+      jwtToken?: string
+    ) => Promise<any>
+  }
+}
