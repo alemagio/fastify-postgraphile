@@ -6,7 +6,7 @@ jobs:
     strategy:
       matrix:
         node-version: [10.x, 12.x, 14.x]
-        os: [ubuntu-latest, windows-latest]
+        os: [ubuntu-latest] # disabled windows-latest until we figure out a way to use docker in it
     steps:
     - uses: actions/checkout@v2
     - name: Use Node.js ${{ matrix.node-version }}
