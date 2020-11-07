@@ -13,4 +13,5 @@ export interface Options {
   pool?: PoolConfig
   schemas: string[]|string
   contextOptions: WithPostGraphileContextOptions
+  mercurius?: boolean
 }

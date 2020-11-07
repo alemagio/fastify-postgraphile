@@ -2,6 +2,7 @@ import { test } from 'tap'
 import { fastify } from 'fastify'
 import { Pool } from 'pg'
 const plugin = require('../src')
+const mercurius = require('mercurius')
 
 const connection = {
   user: 'postgres',
@@ -11,17 +12,7 @@ const connection = {
   port: 5445
 }
 
-const options = { pool: connection, schemas: 'public' }
-
-test('should create the reply decorator', async t => {
-  t.plan(1)
-
-  const app = fastify()
-  app.register(plugin, options)
-  await app.ready()
-
-  t.ok(app.hasReplyDecorator('postgraphileGQL'))
-})
+const options = { pool: connection, schemas: 'public', mercurius: true }
 
 test('should execute graphql queries', async t => {
   t.plan(1)
@@ -48,6 +39,7 @@ test('should execute graphql queries', async t => {
   })
 
   const app = fastify()
+  await app.register(mercurius)
   app.register(plugin, options)
 
   app.post('/', async (req: any, reply: any) => {

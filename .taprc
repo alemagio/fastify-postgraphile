@@ -2,3 +2,4 @@ esm: false
 ts: true
 jsx: false
 coverage: true
+jobs: 1

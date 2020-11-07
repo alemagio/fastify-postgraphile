@@ -1,9 +1,8 @@
 import { test } from 'tap'
 import { QueryPerformer } from '../src/QueryPerformer'
-import { GraphQLSchema, ExecutionResult, Source } from 'graphql'
+import { ExecutionResult } from 'graphql'
 import { Pool, PoolClient } from 'pg'
 import { WithPostGraphileContextOptions, mixed } from 'postgraphile'
-import { Maybe } from 'graphql/jsutils/Maybe'
 
 // Not exported by postgraphile, for testing purpose only
 interface PostGraphileContext {
@@ -12,28 +11,18 @@ interface PostGraphileContext {
 }
 
 test('should create a performer', async t => {
-  t.plan(6)
+  t.plan(4)
 
-  const schemaMock = {} as GraphQLSchema
   const queryMock = 'query'
   const contextMock = { pgPool: new Pool(), jwtToken: 'token' }
   const variablesMock = {}
   const operationNameMock = ''
 
-  const gql = (
-    schema: GraphQLSchema,
-    query: string|Source,
-    rootValue?: any,
-    contextValue?: any,
-    variables?: any,
-    operationName?: Maybe<string>
-  ) => {
-    t.deepEqual(schema, schemaMock)
+  const contextHandlerMock = (query: any, variables: any, operationName: any) => {
     t.deepEqual(query, queryMock)
-    t.deepEqual(rootValue, null)
     t.deepEqual(variables, variablesMock)
     t.deepEqual(operationName, operationNameMock)
-    return Promise.resolve({} as ExecutionResult)
+    return (context: any) => Promise.resolve({} as ExecutionResult)
   }
 
   const postgraphileQueryHandler = (
@@ -46,9 +35,8 @@ test('should create a performer', async t => {
   }
 
   const queryPerformer = new QueryPerformer(
-    schemaMock,
-    gql,
     postgraphileQueryHandler,
+    contextHandlerMock as any,
     new Pool(),
     contextMock
   )

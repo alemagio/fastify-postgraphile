@@ -41,6 +41,8 @@
     "@types/tap": "^14.10.1",
     "fastify": "^3.6.0",
     "fastify-tsconfig": "^1.0.0",
+    "mercurius": "^6.4.0",
+    "pino-pretty": "^4.3.0",
     "rimraf": "^3.0.2",
     "tap": "^14.10.8",
     "ts-standard": "^9.0.0",
