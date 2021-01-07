@@ -1,5 +1,5 @@
 import { PoolConfig } from 'pg'
-import { WithPostGraphileContextOptions } from 'postgraphile'
+import { PostGraphileOptions, WithPostGraphileContextOptions } from 'postgraphile'
 
 export interface PoolOptions {
   user: string
@@ -13,4 +13,6 @@ export interface Options {
   pool?: PoolConfig
   schemas: string[]|string
   contextOptions: WithPostGraphileContextOptions
+  middleware: boolean
+  postgraphileOptions: PostGraphileOptions
 }
