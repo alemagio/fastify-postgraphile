@@ -12,19 +12,50 @@ npm i fastify-postgraphile
 ```
 
 ## Usage
-Require `fastify-postgraphile` and register it as any other plugin, it will add a `graphql` reply decorator.
+
+### Middleware mode
+
+This is the suggested way to work and the only one directly implemented by `postgraphile`.
+
 ```js
 const fastify = require('fastify')()
 
 fastify.register(require('fastify-postgraphile'), {
-  poolConfig: {
+  pool: {
     user: 'postgres',
     host: 'localhost',
     database: 'postgres',
     password: 'password',
     port: 5432
   },
-  schemas: 'public'
+  schemas: 'public',
+  middleware: true // default
+  postgraphileOptions: {
+    // all the options you can pass to the postgraphile function
+  }
+})
+
+fastify.listen(3000)
+```
+
+### Non middleware mode
+
+Require `fastify-postgraphile` and register it as any other plugin, it will add a `graphql` reply decorator.  
+Consider that this is a mode with no built-in routes, you only have a reply decorator already attached to Postgraphile.
+
+```js
+const fastify = require('fastify')()
+
+fastify.register(require('fastify-postgraphile'), {
+  pool: {
+    user: 'postgres',
+    host: 'localhost',
+    database: 'postgres',
+    password: 'password',
+    port: 5432
+  },
+  schemas: 'public',
+  middleware: false
 })
 
 fastify.get('/', async (req, reply) => {
@@ -33,6 +64,14 @@ fastify.get('/', async (req, reply) => {
 
 fastify.listen(3000)
 ```
+
+# Options
+
+* **pool**: accepts a configuration object for the `pg` connection (see [doc](https://node-postgres.com/features/connecting))
+* **schemas**: accepts `string` or `string[]` containing the schemas you want to connect to
+* **contextOptions**: see Postgraphile [doc](https://www.graphile.org/postgraphile/usage-schema/#api-withpostgraphilecontextoptions-callback)
+* **middleware**: when `true` it enables the default mode of Postgraphile, this is the default configuration and the one supported by Postgraphile
+* **postgraphileOptions**: see Postgraphile [doc](https://www.graphile.org/postgraphile/usage-library/#api-postgraphilepgconfig-schemaname-options) (working only in `middleware` mode)
 
 ## Acknowledgements
 
