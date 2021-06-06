@@ -14,7 +14,7 @@
     "coverage": "tap --cov --coverage-report=html test",
     "lint": "ts-standard",
     "unit": "tap --no-coverage test/*.test.ts",
-    "test": "npm run lint && npm run unit",
+    "test": "tsc && npm run lint && npm run unit",
     "pretest": "docker-compose --file docker-compose.test.yml up -d",
     "posttest": "docker-compose --file docker-compose.test.yml down"
   },
