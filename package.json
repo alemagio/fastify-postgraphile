@@ -14,7 +14,7 @@
     "coverage": "tap --cov --coverage-report=html test",
     "lint": "ts-standard",
     "unit": "tap --no-coverage test/*.test.ts",
-    "test": "tsc && npm run lint && npm run unit",
+    "test": "npm run build && npm run lint && npm run unit",
     "pretest": "docker-compose --file docker-compose.test.yml up -d",
     "posttest": "docker-compose --file docker-compose.test.yml down"
   },
@@ -43,6 +43,7 @@
     "fastify-tsconfig": "^1.0.1",
     "rimraf": "^3.0.2",
     "tap": "^15.0.9",
+    "ts-node": "^10.0.0",
     "ts-standard": "^10.0.0",
     "typescript": "^4.3.2"
   },
