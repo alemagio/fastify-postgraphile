@@ -4,7 +4,7 @@ import { Pool } from 'pg'
 
 test('should create a Pool with default config', async t => {
   t.plan(1)
-  t.deepEqual(
+  t.same(
     createPool(),
     new Pool()
   )
@@ -20,7 +20,7 @@ test('should create a Pool with custom config', async t => {
     password: 'password',
     port: 5445
   }
-  t.deepEqual(
+  t.same(
     createPool(config),
     new Pool(config)
   )

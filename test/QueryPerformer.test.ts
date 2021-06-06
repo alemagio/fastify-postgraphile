@@ -28,11 +28,11 @@ test('should create a performer', async t => {
     variables?: any,
     operationName?: Maybe<string>
   ) => {
-    t.deepEqual(schema, schemaMock)
-    t.deepEqual(query, queryMock)
-    t.deepEqual(rootValue, null)
-    t.deepEqual(variables, variablesMock)
-    t.deepEqual(operationName, operationNameMock)
+    t.same(schema, schemaMock)
+    t.same(query, queryMock)
+    t.same(rootValue, null)
+    t.same(variables, variablesMock)
+    t.same(operationName, operationNameMock)
     return Promise.resolve({} as ExecutionResult)
   }
 
@@ -40,7 +40,7 @@ test('should create a performer', async t => {
     options: WithPostGraphileContextOptions,
     cb: (context: PostGraphileContext) => Promise<any>
   ): Promise<ExecutionResult> => {
-    t.deepEqual(options, contextMock)
+    t.same(options, contextMock)
     cb({} as PostGraphileContext)
     return Promise.resolve({} as ExecutionResult)
   }

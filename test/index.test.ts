@@ -43,7 +43,7 @@ test('should execute graphql queries', async t => {
     VALUES (\'${user.id}\', \'${user.username}\', \'${user.password}\');
   `)
 
-  t.tearDown(async () => {
+  t.teardown(async () => {
     await pool.query(`DROP TABLE users`)
   })
 
@@ -74,7 +74,7 @@ test('should execute graphql queries', async t => {
     }
   })
 
-  t.deepEqual(
+  t.same(
     JSON.parse(res.body),
     {
       data: {
@@ -106,7 +106,7 @@ test('should work using middleware option', async t => {
     VALUES (\'${user.id}\', \'${user.username}\', \'${user.password}\');
   `)
 
-  t.tearDown(async () => {
+  t.teardown(async () => {
     await pool.query(`DROP TABLE users`)
   })
 
@@ -133,7 +133,7 @@ test('should work using middleware option', async t => {
     }
   })
 
-  t.deepEqual(
+  t.same(
     JSON.parse(res.body),
     {
       data: {
@@ -160,5 +160,5 @@ test('should work using middleware option and graphiql', async t => {
     method: 'GET'
   })
 
-  t.deepEqual(res.statusCode, 200)
+  t.same(res.statusCode, 200)
 })

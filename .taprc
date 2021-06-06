@@ -1,4 +1,3 @@
-esm: false
 ts: true
 jsx: false
 coverage: true
